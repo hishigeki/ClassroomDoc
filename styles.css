@@ -1,0 +1,40 @@
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Ensuring images are responsive and centered */
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: auto; /* Centering the image horizontally */
+    }
+
+    /* Handling responsive layout for smaller screens */
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            padding: 5px;
+        }
+    }
+    
