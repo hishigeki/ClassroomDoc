@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAGISEN ポータルサイト</title>
+<style type="text/css">
+body {
+  margin: 0; /* body のデフォルト margin をリセット */
+}
+
+.container {
+  max-width: 960px; /* コンテンツの最大幅を設定 */
+  margin: 0 auto; /* 中央揃え */
+  padding: 20px;
+}
+
+.auto-style1 {
+  text-align: center;
+}
+
+.auto-style1 img {
+  max-width: 100%; /* 画像が親要素の幅を超えないようにする */
+  height: auto; /* 画像のアスペクト比を維持 */
+  display: block; /* 画像をブロック要素にする */
+  margin: 0 auto; /* 画像を中央揃えにする */
+}
+
+/* レスポンシブデザイン用メディアクエリ */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}
+
+/* ボタンと入力欄のスタイル */
+.input-style, .button-style {
+  display: block; /* 要素をブロック要素にする */
+  margin: 20px auto; /* 上下の margin を設定し、中央揃えにする */
+  padding: 10px; /* padding を設定 */
+  font-size: 20px; /* フォントサイズを倍にする */
+  text-align: center; /* テキストを中央揃えにする */
+  box-sizing: border-box; /* padding を要素の幅に含める */
+  width: 200px; /* 幅を設定 */
+}
+
+.button-style {
+  background-color: #4CAF50; /* 背景色 */
+  color: white; /* 文字色 */
+  border: none; /* ボーダーを消す */
+  cursor: pointer; /* カーソルを指マークにする */
+  border-radius: 5px; /* 角を丸くする */
+}
+
+.button-style:hover {
+  background-color: #45a049; /* ホバー時の背景色 */
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <p class="auto-style1">
+    <img alt="KAGISEN" src="images/samplek.jpg">
+  </p>
+  <p class="auto-style1">Welcome to KAGISEN portal site</p>
+  <input type="password" id="password" class="input-style" placeholder="パスワード">
+  <button class="button-style" onclick="checkPassword()">ログイン</button>
+  <script src="passwordcheck.js"></script>
+</div>
+</body>
+</html>
