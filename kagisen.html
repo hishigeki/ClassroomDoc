@@ -63,29 +63,28 @@
 
       function checkPassword() {
         const inputPassword = document.getElementById("password").value;
-        
-        // パスワードをPOSTで送信
+
         fetch(scriptUrl, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
           },
           body: 'password=' + encodeURIComponent(inputPassword),
-          mode: 'cors' // CORS を許可
         })
-        .then(response => response.text())
+        .then(response => {
+          console.log("Response Status:", response.status);
+          return response.json(); // JSON 形式で取得
+        })
         .then(data => {
-          console.log("Server response:", data);
-          if (data === 'success') {
+          console.log("Server Response:", data); // レスポンス内容を確認
+          if (data.status === "success") { // data.status で判定
             window.location.href = "https://hishigeki.github.io/ClassroomDoc/classroom_login.html";
-          } else if (data === 'fail') {
-            alert("パスワードが間違っています。");
           } else {
-            alert("エラーが発生しました。");
+            alert("パスワードが間違っています。");
           }
         })
         .catch(error => {
-          console.error('Error:', error);
+          console.error("Fetch Error:", error); // エラー内容を詳しく出力
           alert("通信エラーが発生しました。");
         });
       }
