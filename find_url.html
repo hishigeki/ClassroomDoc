@@ -62,7 +62,7 @@
           if (results.length === 0) {
             resultsDiv.innerHTML = "<p>該当するデータはありません。</p>";
           } else {
-            let tableHtml = "<table><tr><th>First 名前</th><th>Last 苗字</th><th>Email</th><th>Password</th><th>Unit 学科</th><th>招待URL</th><th>画像リンク</th></tr>";
+            let tableHtml = "<table><tr><th>First 名前</th><th>Last 苗字</th><th>Email</th><th>仮Password</th><th>Unit 学科</th><th>招待URL</th><th>QR画像</th></tr>";
             results.forEach(row => {
               tableHtml += `<tr>
                               <td>${row.firstName}</td>
@@ -70,8 +70,8 @@
                               <td>${row.email}</td>
                               <td>${row.password}</td>
                               <td>${row.orgUnit}</td>
-                              <td><a href="${row.invitationUrl}" target="_blank">${row.invitationUrl}</a></td>
-                              <td><a href="${row.imageLinkUrl}" target="_blank">${row.imageLinkUrl}</a></td>
+                              <td><a href="${row.invitationUrl}" target="_blank">クリック</a></td>
+                              <td><a href="${row.imageLinkUrl}" target="_blank">クリック</a></td>
                             </tr>`;
             });
             tableHtml += "</table>";
