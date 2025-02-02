@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email仮パスワード検索</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        text-align: center;
+      }
+      form {
+        max-width: 500px;
+        margin: 20px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      input, select, button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+      }
+      table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+    <script>
+      async function performSearch() {
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const orgUnit = document.getElementById("orgUnit").value;
+        const apiUrl = "https://script.google.com/macros/s/AKfycbwGeIuxNmURgPl3VCaKYq9XRdfxYYMEII5KDSVVO4FKwbtuJ_6gv6g4n7hnLJmEFvi4Bw/exec"; // ここにGASのURLを入れる
+
+        const url = `${apiUrl}?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&orgUnit=${encodeURIComponent(orgUnit)}`;
+
+        try {
+          const response = await fetch(url);
+          const results = await response.json();
+
+          const resultsDiv = document.getElementById("results");
+          if (results.length === 0) {
+            resultsDiv.innerHTML = "<p>該当するデータはありません。</p>";
+          } else {
+            let tableHtml = "<table><tr><th>First 名前</th><th>Last 苗字</th><th>Email</th><th>Password</th><th>Unit 学科</th></tr>";
+            results.forEach(row => {
+              tableHtml += `<tr>
+                              <td>${row.firstName}</td>
+                              <td>${row.lastName}</td>
+                              <td>${row.email}</td>
+                              <td>${row.password}</td>
+                              <td>${row.orgUnit}</td>
+                            </tr>`;
+            });
+            tableHtml += "</table>";
+            resultsDiv.innerHTML = tableHtml;
+          }
+        } catch (error) {
+          console.error("エラー:", error);
+          alert("データの取得に失敗しました");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Email・仮パスワード検索フォーム</h1>
+    <form>
+      <label for="firstName">First 名前:</label>
+      <input type="text" id="firstName" name="firstName">
+      <label for="lastName">Last 苗字:</label>
+      <input type="text" id="lastName" name="lastName">
+      <label for="orgUnit">学科 Unit:</label>
+      <select id="orgUnit" name="orgUnit">
+        <option value="">選択してください</option>
+        <option value="映像音響学科">映像音響学科</option>
+        <option value="測量環境工学科">測量環境工学科</option>
+        <option value="一級自動車工学研究科">一級自動車工学研究科</option>
+        <option value="電気通信工学科">電気通信工学科</option>
+        <option value="国際自動車工学科">国際自動車工学科</option>
+        <option value="ものづくり創造学科">ものづくり創造学科</option>
+        <option value="二級自動車工学科">二級自動車工学科</option>
+        <option value="国際機械工学科">国際機械工学科</option>
+        <option value="進学準備学科">進学準備学科</option>
+        <option value="日本語学科">日本語学科</option>
+        <option value="国際情報学科">国際情報学科</option>
+        <option value="建築工学科">建築工学科</option>
+        <option value="建築工学研究科">建築工学研究科</option>
+        <option value="食品生命科学科">食品生命科学科</option>
+        <option value="ICTライセンス学科">ICTライセンス学科</option>
+      </select>
+      <button type="button" onclick="performSearch()">検索</button>
+    </form>
+    <div id="results"></div>
+  </body>
+</html>
