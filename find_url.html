@@ -47,40 +47,62 @@
     <script>
 
       async function performSearch() {
-        const firstName = document.getElementById("firstName").value;
-        const lastName = document.getElementById("lastName").value;
-        const orgUnit = document.getElementById("orgUnit").value;
-        const apiUrl = "https://script.google.com/macros/s/AKfycbzNxmxkEwRtjVuVYdevoxiPpahukQN_1QDyvxU7xV1tqOtztNH6NWuk-W9YwzL9p3GEOQ/exec"; // ここにGASのURLを入れる
+          const firstName = document.getElementById("firstName").value.trim();
+          const lastName = document.getElementById("lastName").value.trim();
+          const orgUnit = document.getElementById("orgUnit").value;
 
-        const url = `${apiUrl}?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&orgUnit=${encodeURIComponent(orgUnit)}`;
-
-        try {
-          const response = await fetch(url);
-          const results = await response.json();
-
-          const resultsDiv = document.getElementById("results");
-          if (results.length === 0) {
-            resultsDiv.innerHTML = "<p>該当するデータはありません。</p>";
-          } else {
-            let tableHtml = "<table><tr><th>First 名前</th><th>Last 苗字</th><th>Email</th><th>仮Password</th><th>Unit 学科</th><th>招待URL</th><th>QR画像</th></tr>";
-            results.forEach(row => {
-              tableHtml += `<tr>
-                              <td>${row.firstName}</td>
-                              <td>${row.lastName}</td>
-                              <td>${row.email}</td>
-                              <td>${row.password}</td>
-                              <td>${row.orgUnit}</td>
-                              <td><a href="${row.invitationUrl}" target="_blank">クリック</a></td>
-                              <td><a href="${row.imageLinkUrl}" target="_blank">クリック</a></td>
-                            </tr>`;
-            });
-            tableHtml += "</table>";
-            resultsDiv.innerHTML = tableHtml;
+          if (!firstName && !lastName && !orgUnit) {
+              alert("少なくとも1つの項目を入力してください。");
+              return;
           }
-        } catch (error) {
-          console.error("エラー:", error);
-          alert("データの取得に失敗しました");
-        }
+
+          const apiUrl = "https://script.google.com/macros/s/AKfycbxjMDgbBIiECJeoCW1fr-pHd8RLfO7fQDT3i5YUbBnvagfVdOP0QLctLRSMWobzMfHG9A/exec";
+          const url = `${apiUrl}?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&orgUnit=${encodeURIComponent(orgUnit)}`;
+
+          try {
+              const response = await fetch(url);
+              const results = await response.json();
+
+              console.log("APIレスポンス:", results); // デバッグ用
+
+              const resultsDiv = document.getElementById("results");
+              if (!results || results.length === 0) {
+                  resultsDiv.innerHTML = "<p>該当するデータはありません。</p>";
+                  return;
+              }
+
+              let tableHtml = `
+                  <table>
+                      <tr>
+                          <th>First 名前</th>
+                          <th>Last 苗字</th>
+                          <th>Email</th>
+                          <th>仮Password</th>
+                          <th>Unit 学科</th>
+                          <th>招待URL</th>
+                          <th>QR画像</th>
+                      </tr>`;
+
+              results.forEach(row => {
+                  tableHtml += `
+                      <tr>
+                          <td>${row.firstName || "N/A"}</td>
+                          <td>${row.lastName || "N/A"}</td>
+                          <td>${row.email || "N/A"}</td>
+                          <td>${row.password || "N/A"}</td>
+                          <td>${row.orgUnit || "N/A"}</td>
+                          <td>${row.invitationUrl ? `<a href="${row.invitationUrl}" target="_blank">クリック</a>` : "なし"}</td>
+                          <td>${row.imageLinkUrl ? `<a href="${row.imageLinkUrl}" target="_blank">クリック</a>` : "なし"}</td>
+                      </tr>`;
+              });
+
+              tableHtml += "</table>";
+              resultsDiv.innerHTML = tableHtml;
+
+          } catch (error) {
+              console.error("エラー:", error);
+              alert("データの取得に失敗しました");
+          }
       }
 
     </script>
