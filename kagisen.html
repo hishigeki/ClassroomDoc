@@ -60,18 +60,18 @@
 
     <script>
       // Google Apps Script Web API の URL
-      const scriptUrl = 'https://script.google.com/macros/s/AKfycbxgWho89R82eQ2Uqbtg6zxadyFGl1w0OKOwp1mMopzNA-Gtmu16BrG_WfhQxPdFleL2/exec';
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbxxSgR6If38VHxVPe-eINn0FdUzON6e50JCjbvdAxUB-SclFt-n7AJNng1-e7Fcgo3z/exec';
 
       function checkPassword() {
         const inputPassword = document.getElementById("password").value;
 
         fetch(scriptUrl, {
           method: 'POST',
-          mode: 'cors',  // 追加: CORS モードを有効にする
+          mode: 'cors',  // CORS モードを有効にする
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',  // JSON に変更
           },
-          body: 'password=' + encodeURIComponent(inputPassword),
+          body: JSON.stringify({ password: inputPassword }),  // JSON 形式で送信
         })
         .then(response => {
           console.log("Response Status:", response.status);
@@ -90,7 +90,6 @@
           alert("通信エラーが発生しました。");
         });
       }
-
     </script>
   </div>
 
