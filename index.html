@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroomについて</title>
+    <style>
+        /* 全体のスタイル */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+
+        /* ヘッダー部分のスタイル */
+        .header {
+            text-align: center;
+            background-color: #007BFF;
+            padding: 20px 0;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* メイン画像のスタイル */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .main-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* リンクのスタイル */
+        .link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: white;
+            background-color: #28a745;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .link:hover {
+            background-color: #218838;
+        }
+
+        /* レスポンシブデザイン - モバイルファースト */
+        @media (max-width: 768px) {
+            .header {
+                font-size: 1.5rem;
+            }
+
+            .link {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+        }
+
+        /* デスクトップ向けのスタイル */
+        @media (min-width: 769px) {
+            .header {
+                font-size: 2.5rem;
+            }
+
+            .link {
+                font-size: 1.5rem;
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        Classroomについて
+    </div>
+
+    <div class="image-container">
+        <img class="main-image" src="images/samplek.jpg" alt="Classroom Image">
+    </div>
+
+    <div style="text-align: center; padding: 20px;">
+        <a class="link" href="https://hishigeki.github.io/ClassroomDoc/classroom_search.html">Emailなどの検索（学生向け）</a>
+    </div>
+
+    <div style="text-align: center; padding-bottom: 40px;">
+        <a class="link" href="https://hishigeki.github.io/ClassroomDoc/classroom_login.html">簡易マニュアル（先生向け）</a>
+    </div>
+
+</body>
+
+</html>
