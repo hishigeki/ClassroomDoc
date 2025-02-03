@@ -1,0 +1,41 @@
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* 画像をレスポンシブにし、画面幅に拡大できるようにする */
+    .responsive-img {
+        width: 100%;  /* 画面幅いっぱいに広げる */
+        height: auto;
+        display: block;
+        margin: auto;
+        object-fit: contain;  /* アスペクト比を維持 */
+    }
+
+    /* スマホ向け */
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            padding: 5px;
+        }
+    }
+    
