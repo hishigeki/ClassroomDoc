@@ -17,16 +17,15 @@
         padding: 20px;
     }
 
-    /* 画像をレスポンシブにし、画面幅に拡大できるようにする */
-    .responsive-img {
-        width: 100%;  /* 画面幅いっぱいに広げる */
+    /* Ensuring images are responsive and centered */
+    img {
+        max-width: 100%;
         height: auto;
         display: block;
-        margin: auto;
-        object-fit: contain;  /* アスペクト比を維持 */
+        margin: auto; /* Centering the image horizontally */
     }
 
-    /* スマホ向け */
+    /* Handling responsive layout for smaller screens */
     @media (max-width: 768px) {
         .container {
             padding: 10px;
